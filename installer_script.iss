@@ -2,7 +2,7 @@
 
 [Setup]
 AppName=Gaan ta Namao
-AppVersion=2.0
+AppVersion=2.1
 DefaultDirName={autopf}\Gaan ta Namao
 DefaultGroupName=Gaan ta Namao
 OutputBaseFilename=Gaan_ta_Namao_Setup
@@ -24,3 +24,4 @@ Name: "{autodesktop}\Gaan ta Namao"; Filename: "{app}\Gaan ta Namao.exe"; Tasks:
 
 [Tasks]
 Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional shortcuts:"
+
