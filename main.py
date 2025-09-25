@@ -20,7 +20,7 @@ class FormatDialog(tk.Toplevel):
     def __init__(self, parent, title, format_options, quality_options):
         super().__init__(parent)
         self.title(title)
-        self.geometry("350x200")
+        # self.geometry("350x200") # <-- REMOVED THIS LINE
         self.resizable(False, False)
         self.transient(parent)
         self.grab_set()
@@ -53,6 +53,32 @@ class FormatDialog(tk.Toplevel):
         cancel_button.grid(row=0, column=1, sticky="ew", padx=(5, 0))
         
         self._center_window()
+
+    def _center_window(self):
+        self.update_idletasks()
+        width = self.winfo_width()
+        height = self.winfo_height()
+        parent_x = self.master.winfo_x()
+        parent_y = self.master.winfo_y()
+        parent_width = self.master.winfo_width()
+        parent_height = self.master.winfo_height()
+        x = parent_x + (parent_width // 2) - (width // 2)
+        y = parent_y + (parent_height // 2) - (height // 2)
+        self.geometry(f'{width}x{height}+{x}+{y}')
+
+    def ok_pressed(self):
+        file_format = self.format_var.get().split(" ")[0].lower()
+        quality = self.quality_var.get()
+        self.result = (file_format, quality)
+        self.destroy()
+
+    def cancel_pressed(self):
+        self.result = None
+        self.destroy()
+
+    def show(self):
+        self.wait_window()
+        return self.result
 
     def _center_window(self):
         self.update_idletasks()
