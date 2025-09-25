@@ -1,0 +1,123 @@
+Gaan ta Namao: Packaging and Installation Guide (Fresh Start)
+This guide will walk you through the final steps of preparing your application for distribution, starting from your new Gaan ta Namao folder.
+
+The process is in two main parts:
+
+Part A: Packaging into a single .exe file using PyInstaller.
+
+Part B: Creating a user-friendly Windows installer using Inno Setup.
+
+Part A: Creating the Standalone .exe File
+This process bundles your Python application, its dependencies, your logo, and FFmpeg into a single executable file that can run on any modern Windows computer.
+
+Step 1: Prepare Your Project Folder
+Before you begin, ensure your Gaan ta Namao project folder is clean and contains the following essential files:
+
+main.py
+
+downloader.py
+
+utils.py
+
+logo.png (Your application's logo)
+
+ffmpeg.exe (The audio/video converter program)
+
+Step 2: Install PyInstaller
+Open your terminal, navigate to your Gaan ta Namao folder, activate your virtual environment, and install PyInstaller.
+
+# Navigate to your project folder
+cd "path\to\your\Gaan ta Namao"
+
+# Make sure your venv is active
+.\venv\Scripts\activate
+
+# Install PyInstaller
+pip install pyinstaller
+
+Step 3: Create the Icon File
+PyInstaller requires a .ico file for the application icon. You can easily convert your logo.png using an online tool.
+
+Go to a website like CloudConvert PNG to ICO.
+
+Upload your logo.png.
+
+Convert and download the logo.ico file.
+
+Save logo.ico in the same Gaan ta Namao folder.
+
+Step 4: Run the PyInstaller Command
+This is the most important step. In your activated terminal, run the following command. It's a single long command, so copy it carefully.
+
+pyinstaller --name "Gaan ta Namao" --windowed --onefile --add-data "logo.png;." --add-binary "ffmpeg.exe;." --icon="logo.ico" main.py
+
+What this command does:
+
+--name "Gaan ta Namao": Sets the final executable name to Gaan ta Namao.exe.
+
+--windowed: Prevents a black console window from appearing when your app runs.
+
+--onefile: Bundles everything into a single .exe file.
+
+--add-data "logo.png;.": Includes your logo.png file in the package.
+
+--add-binary "ffmpeg.exe;.": Crucially, this includes the ffmpeg.exe program inside your app package so it can convert files.
+
+--icon="logo.ico": Sets the file icon for your .exe.
+
+Step 5: Find Your Executable
+After the command finishes, PyInstaller will create a new folder named dist. Inside this dist folder, you will find your final, standalone application: Gaan ta Namao.exe. You can now run this file on any Windows machine.
+
+Part B: Creating the Windows Installer (setup.exe)
+This step takes your .exe file and creates a professional installer that adds Start Menu and Desktop shortcuts.
+
+Step 1: Download and Install Inno Setup
+If you haven't already, download and install the Inno Setup compiler from its official website: https://jrsoftware.org/isinfo.php
+
+Step 2: Create the Installer Script
+In your main Gaan ta Namao project folder, create a new text file.
+
+Name it installer_script.iss.
+
+Copy and paste the entire script below into this file.
+
+; Inno Setup Script for Gaan ta Namao
+
+[Setup]
+AppName=Gaan ta Namao
+AppVersion=1.0
+DefaultDirName={autopf}\Gaan ta Namao
+DefaultGroupName=Gaan ta Namao
+OutputBaseFilename=Gaan_ta_Namao_Setup
+Compression=lzma2
+SolidCompression=yes
+WizardStyle=modern
+UninstallDisplayIcon={app}\Gaan ta Namao.exe
+AppPublisher=NS Limon
+
+[Files]
+; This tells the installer to grab your EXE from the dist folder
+Source: "dist\Gaan ta Namao.exe"; DestDir: "{app}"; Flags: ignoreversion
+
+[Icons]
+; Start Menu Shortcut
+Name: "{group}\Gaan ta Namao"; Filename: "{app}\Gaan ta Namao.exe"
+; Desktop Shortcut
+Name: "{autodesktop}\Gaan ta Namao"; Filename: "{app}\Gaan ta Namao.exe"; Tasks: desktopicon
+
+[Tasks]
+Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional shortcuts:"
+
+Step 3: Compile the Installer
+Open the Inno Setup Compiler application.
+
+Go to File -> Open... and select your installer_script.iss file.
+
+Click the Build -> Compile menu item.
+
+Inno Setup will run and use your script to create the installer.
+
+Step 4: Find Your Installer
+A new folder named Output will be created inside your project directory. Inside it, you will find your final, shareable installer file: Gaan_ta_Namao_Setup.exe.
+
+You are now ready to distribute your application! Congratulations!
