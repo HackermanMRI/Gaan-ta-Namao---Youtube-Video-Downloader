@@ -3,9 +3,7 @@ Gaan ta Namao - A Sleek YouTube Downloader
 CSE, Jagannath University
 
 "Gaan ta Namao" is a sleek and user-friendly desktop application designed to effortlessly download your favorite YouTube content. With a beautiful, custom-themed interface, it allows you to save any YouTube video directly to your computer or convert it into a high-quality MP3 audio file with just a few clicks.
-
-Screenshot
-The clean and modern user interface of Gaan ta Namao.
+<img width="702" height="578" alt="Screenshot 2025-09-25 064431" src="https://github.com/user-attachments/assets/0d353ebf-a36a-4f69-b19d-2b42aed39cc8" />
 
 Features
 Download YouTube Videos: Save videos in MP4 format.
@@ -26,7 +24,7 @@ The easiest way to get started is to download the latest installer.
 
 Go to the Releases page of this repository.
 
-Download the Gaan_ta_Namao_Setup.exe file from the latest release.
+Download the Gaan_ta_Namao_Setup.exe file from Drive Link.
 
 Run the installer and follow the on-screen instructions. The application will be added to your Windows Start Menu.
 
@@ -40,9 +38,6 @@ You must have Python 3.8 or newer installed.
 You must have FFmpeg installed and accessible in your system's PATH. This is crucial for audio conversion.
 
 2. Clone the Repository:
-
-git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-cd your-repo-name
 
 3. Set Up a Virtual Environment:
 
